@@ -1,35 +1,21 @@
-fn main() {
-    let my_string = String::from("Greetings human");
-
-    let word = first_word(&my_string[0..6]);
-    println!("The first word is: {}", word);
-    let word = first_word(&my_string[..6]);
-
-    println!("The first word is: {}", word);
-
-    let word = first_word(&my_string);
-    println!("The first word is: {}", word);
-
-    let my_string_literal = "Greetings human";
-
-    let word = first_word(&my_string_literal[0..6]);
-    println!("The first word is: {}", word);
-    let word = first_word(&my_string_literal[..6]);
-    println!("The first word is: {}", word);
-
-    let word = first_word(&my_string_literal);
-
-    println!("The first word is: {}", word);
+struct User {
+    active: bool,
+    username: String,
+    email: String,
+    sign_in_count: u64,
 }
 
-fn first_word(s: &str) -> &str {
-    let bytes = s.as_bytes();
+fn main() {
+    let user1 = User {
+        email: String::from("carlo@example.com"),
+        username: String::from("carlo"),
+        active: true,
+        sign_in_count: 1,
+    };
 
-    for (i, &item) in bytes.iter().enumerate() {
-        if item == b' ' {
-            return &s[0..i];
-        }
-    }
-
-    &s[..]
+    println!("User 1: {}", user1.email);
+    println!("active: {}", user1.active);
+    println!("sign_in_count: {}", user1.sign_in_count);
+    println!("email: {}", user1.email);
+    println!("username: {}", user1.username);
 }
