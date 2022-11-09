@@ -1,23 +1,32 @@
-#[derive(Debug)]
-struct Rectangle {
-    width: u32,
-    height: u32,
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter,
 }
 
-impl Rectangle {
-    fn area(&self) -> u32 {
-        self.width * self.height
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => 1,
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter => 25,
     }
 }
 
 fn main() {
-    let rect1 = Rectangle {
-        width: 30,
-        height: 50,
-    };
-
-    println!(
-        "The area of the rectangle is {} square pixels.",
-        rect1.area()
-    );
+    let coin = Coin::Penny;
+    let value = value_in_cents(coin);
+    println!("value of coin is {}", value);
 }
+
+fn plus_one(x: Option<i32>) -> Option<i32> {
+    match x {
+        None => None,
+        Some(i) => Some(i + 1),
+    }
+}
+
+let five = Some(5);
+let six = plus_one(five);
+let none = plus_one(None);
