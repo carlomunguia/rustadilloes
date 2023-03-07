@@ -1,42 +1,22 @@
-use std::collections::HashMap;
+struct Point<X1, Y1> {
+    x: X1,
+    y: Y1,
+}
+
+impl<X1, Y1> Point<X1, Y1> {
+    fn mixup<X2, Y2>(self, other: Point<X2, Y2>) -> Point<X1, Y2> {
+        Point {
+            x: self.x,
+            y: other.y,
+        }
+    }
+}
+
 fn main() {
-    let mut scores = HashMap::new();
+    let p1 = Point { x: 5, y: 10.4 };
+    let p2 = Point { x: "Hello", y: 'c' };
 
-    scores.insert(String::from("Blue"), 10);
-    scores.insert(String::from("Yellow"), 50);
+    let p3 = p1.mixup(p2);
 
-    let team_name = String::from("Blue");
-    let score = scores.get(&team_name).copied().unwrap_or(0);
-
-    println!("{}: {}", team_name, score);
-
-    for (key, value) in &scores {
-        println!("{}: {}", key, value);
-    }
-
-    let field_name = String::from("Favorite color");
-    let field_value = String::from("Blue");
-
-    let mut map = HashMap::new();
-
-    map.insert(field_name, field_value);
-
-    scores.insert(String::from("Blue"), 10);
-    scores.insert(String::from("Blue"), 25);
-
-    scores.entry(String::from("Yellow")).or_insert(50);
-    scores.entry(String::from("Blue")).or_insert(50);
-
-    println!("{:?}", scores);
-
-    let text = "hello world wonderful world";
-
-    let mut mappy = HashMap::new();
-
-    for word in text.split_whitespace() {
-        let count = mappy.entry(word).or_insert(0);
-        *count += 1;
-    }
-
-    println!("{:?}", mappy);
+    println!("p3.x = {}, p3.y = {}", p3.x, p3.y)
 }
